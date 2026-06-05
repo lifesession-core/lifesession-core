@@ -1,0 +1,16 @@
+{
+  "id": "dec_001",
+  "session_id": "sess_maint_001",
+  "title": "Merge deduplication PR after review",
+  "made_at": "2024-11-01T10:30:00Z",
+  "made_by": "alice@example.com",
+  "outcome": "approved",
+  "rationale": "Deduplication removes 30% of noisy events in backtest. No API changes.",
+  "alternatives_considered": [
+    "Defer to next sprint — rejected, issue is blocking users",
+    "Partial implementation — rejected, incomplete fix creates confusion"
+  ],
+  "linked_events": ["evt_002"],
+  "review_required": false,
+  "note": "This is a fake example. No real project data."
+}

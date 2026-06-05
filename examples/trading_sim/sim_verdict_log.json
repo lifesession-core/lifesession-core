@@ -1,0 +1,16 @@
+{
+  "simulation_mode": true,
+  "note": "SIMULATION ONLY. No real exchange calls. No real execution.",
+  "event_id": "sim_evt_001",
+  "verdict": "PASS",
+  "score": 4,
+  "max_score": 6,
+  "reasons": [
+    "Simulated channel position in lower half",
+    "Simulated ATR within normal range",
+    "No simulated cooldown active"
+  ],
+  "action": "paper_log_only",
+  "real_order_placed": false,
+  "logged_at": "2024-11-01T09:01:00Z"
+}

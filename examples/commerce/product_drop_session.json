@@ -1,0 +1,36 @@
+{
+  "session_id": "sess_ecom_001",
+  "type": "commerce",
+  "opened_at": "2024-11-01T10:00:00Z",
+  "mission": {
+    "id": "miss_nov_drop",
+    "title": "Launch November product drop",
+    "status": "active",
+    "owner": "ops@example.com",
+    "created_at": "2024-11-01T10:00:00Z",
+    "success_criteria": [
+      "Product pages published",
+      "Pricing approved",
+      "Launch announcement drafted"
+    ]
+  },
+  "events": [
+    {
+      "id": "ecom_evt_001",
+      "type": "product_ready",
+      "source": "catalog",
+      "product_id": "prod_fake_001",
+      "title": "Digital art print — Edition 1",
+      "price_usd": 29.0,
+      "created_at": "2024-11-01T09:55:00Z"
+    }
+  ],
+  "decision": {
+    "id": "ecom_dec_001",
+    "title": "Approve launch at $29",
+    "outcome": "approved",
+    "made_by": "ops@example.com",
+    "rationale": "Price point matches comparable drops. Inventory confirmed."
+  },
+  "note": "This is a fake example. No real product, user, or transaction data."
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lifesession.dev/schemas/mission.schema.json",
+  "title": "Mission",
+  "type": "object",
+  "required": ["id", "title", "status", "created_at"],
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "status": {"enum": ["planned", "active", "paused", "complete", "cancelled"]},
+    "owner": {"type": "string"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "success_criteria": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

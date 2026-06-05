@@ -1,0 +1,29 @@
+{
+  "simulation_mode": true,
+  "note": "SIMULATION ONLY. No real prices, no real exchange, no real money.",
+  "session_id": "sim_sess_001",
+  "type": "trading_sim",
+  "opened_at": "2024-11-01T09:00:00Z",
+  "mission": {
+    "id": "miss_paper_session_001",
+    "title": "Paper trading session — SIMULATION",
+    "status": "active",
+    "owner": "sim_user",
+    "created_at": "2024-11-01T09:00:00Z",
+    "success_criteria": [
+      "Log all simulated signal events",
+      "Record paper decisions without real execution",
+      "Export session state for review"
+    ]
+  },
+  "event": {
+    "id": "sim_evt_001",
+    "type": "simulated_signal",
+    "source": "simulation",
+    "ticker": "FAKE_TOKEN",
+    "direction": "long",
+    "simulated_confidence": 0.72,
+    "simulated_price": 100.0,
+    "note": "All values are randomly generated for demonstration purposes."
+  }
+}
