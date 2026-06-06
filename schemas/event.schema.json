@@ -3,7 +3,7 @@
   "$id": "https://lifesession.dev/schemas/event.schema.json",
   "title": "Event",
   "type": "object",
-  "required": ["id", "session_id", "type", "created_at", "payload"],
+  "required": ["id", "session_id", "type", "source", "created_at", "payload"],
   "properties": {
     "id": {"type": "string"},
     "session_id": {"type": "string"},

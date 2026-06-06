@@ -3,10 +3,12 @@
   "$id": "https://lifesession.dev/schemas/decision.schema.json",
   "title": "Decision",
   "type": "object",
-  "required": ["id", "session_id", "status", "summary", "created_at"],
+  "required": ["id", "session_id", "title", "outcome", "created_at"],
   "properties": {
     "id": {"type": "string"},
     "session_id": {"type": "string"},
+    "title": {"type": "string"},
+    "outcome": {"enum": ["approved", "rejected", "deferred", "needs_review"]},
     "status": {"enum": ["proposed", "approved", "rejected", "needs_review"]},
     "summary": {"type": "string"},
     "rationale": {"type": "string"},

@@ -3,9 +3,10 @@
   "$id": "https://lifesession.dev/schemas/session_state.schema.json",
   "title": "SessionState",
   "type": "object",
-  "required": ["id", "mission_id", "status", "events", "decisions"],
+  "required": ["session_id", "status"],
   "properties": {
     "id": {"type": "string"},
+    "session_id": {"type": "string"},
     "mission_id": {"type": "string"},
     "status": {"enum": ["open", "waiting", "closed"]},
     "opened_at": {"type": "string", "format": "date-time"},
