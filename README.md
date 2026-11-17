@@ -6,7 +6,7 @@ LifeSession turns work into reviewable sessions — bounded units of operational
 
 [![CI](https://github.com/lifesession-core/lifesession-core/actions/workflows/ci.yml/badge.svg)](https://github.com/lifesession-core/lifesession-core/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![Python CI](https://img.shields.io/badge/python_CI-3.10%20%7C%203.11%20%7C%203.12-blue)
 ![Status](https://img.shields.io/badge/status-active-green)
 
 ---
@@ -31,24 +31,30 @@ Sessions make supplied records reviewable; they do not make arbitrary input safe
 |-----------|-------------|
 | `schemas/` | JSON schemas — mission, event, decision, session state |
 | `examples/` | Fake end-to-end workflows: maintainer, commerce, gallery, simulation |
-| `src/lifesession/` | Demo session lifecycle, local Markdown exporter, heuristic boundary checker |
+| `src/lifesession/` | Demo session lifecycle, local reports, opt-in handoff/package checks, heuristic boundary checker |
 | `tests/` | Unit tests covering sessions, reports, boundary checks, schemas and examples |
 | `docs/` | Architecture, vision, Codex workflows, public/private boundary |
 | `.github/` | Issue templates, PR templates, Python CI |
 
 ---
 
-## Quickstart
+## Quickstart: your first useful report
+
+CI verifies Python 3.10, 3.11 and 3.12. Start with 3.10+ recommended; this does
+not establish support or lack of support for every other version. No external
+Python dependencies are needed. Use a source checkout, not pip install.
 
 ```bash
 git clone https://github.com/lifesession-core/lifesession-core.git
 cd lifesession-core
-python -m unittest discover -s tests -v
 ```
 
-Expected result: the test suite finishes with `OK`. See the CI link for checks on a specific revision.
+Follow [copy → edit → check → report](docs/first-session.md): create a fresh
+fictional record, check its links and save a readable report without changing
+the example or contacting a service. CI executes this documented walkthrough.
 
-No external dependencies required.
+For project verification: `python -m unittest discover -s tests -v`.
+Expected result: `OK`. See CI for checks on a specific revision.
 
 ---
 
@@ -154,7 +160,7 @@ python src/lifesession/safety/boundary_checker.py .
 | Phase | Description | Status |
 |-------|-------------|--------|
 | 0 | Public skeleton — schemas, examples, docs, tests | ✅ Done |
-| 1 | Local session runtime — validation, replay, text dashboard | 🔜 Next |
+| 1 | Local session runtime | Partial: reports/checks implemented; replay/dashboard planned |
 | 2 | Maintainer workflows — issue triage, decision review, close summaries | 📋 Planned |
 | 3 | Integrations — optional adapters, strict boundary checks | 📋 Planned |
 
