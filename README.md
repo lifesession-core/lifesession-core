@@ -210,3 +210,15 @@ This fictional example distinguishes a prepared patch from an accepted or releas
 change. It includes evidence, an unresolved blocker and the next review step.
 It does not contact a service, open a PR or execute the next step. See
 [the walkthrough](docs/maintainer-handoff-demo.md) for expected output and limits.
+
+## Check a handoff before review
+
+```bash
+PYTHONPATH=src python -m lifesession check-handoff examples/maintainer/review_handoff.json
+```
+
+The optional [v1 handoff contract](docs/handoff-contract.md) requires explicit
+delivery/review states, the next action, blockers and scoped evidence. It rejects
+a completed review without acknowledged delivery. Exit code 0 means structural
+consistency only, not independent verification or permission to publish. Failed
+and unrun checks can be recorded honestly. No network or external action occurs.
