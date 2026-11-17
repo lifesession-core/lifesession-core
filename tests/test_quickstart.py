@@ -30,7 +30,7 @@ class QuickstartTests(unittest.TestCase):
             (bin_dir / 'python').symlink_to(sys.executable)
             env = dict(os.environ, PATH=str(bin_dir) + os.pathsep + os.environ['PATH'],
                        TMPDIR=str(root), PYTHONDONTWRITEBYTECODE='1')
-            result = subprocess.run(['sh', '-eu', '-c', blocks[0]], cwd=root,
+            result = subprocess.run(['sh', '-c', blocks[0]], cwd=root,
                                     env=env, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertIn('OK — package structure consistent', result.stdout)

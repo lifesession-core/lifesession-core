@@ -11,6 +11,7 @@ This creates a fresh temporary working directory, preserving the example and
 existing files. Keep the printed path to inspect or copy your report later.
 
 ```sh
+set -eu
 DEMO_DIR="$(mktemp -d)"
 export DEMO_DIR
 export PYTHONPATH="$PWD/src"
