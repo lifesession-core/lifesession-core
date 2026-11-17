@@ -1,0 +1,30 @@
+{
+  "version": "1",
+  "note": "Entirely fictional. No real people, services or operational data.",
+  "mission": {
+    "id": "demo-docs",
+    "title": "Review a fictional documentation fix",
+    "status": "active",
+    "created_at": "2026-01-01T12:00:00Z"
+  },
+  "session": {
+    "session_id": "demo-session",
+    "mission_id": "demo-docs",
+    "status": "waiting",
+    "events": [{
+      "id": "demo-event",
+      "session_id": "demo-session",
+      "type": "observation",
+      "source": "fictional-fixture",
+      "created_at": "2026-01-01T12:01:00Z",
+      "payload": {"note": "A fictional command needs review."}
+    }],
+    "decisions": [{
+      "id": "demo-decision",
+      "session_id": "demo-session",
+      "title": "Request maintainer review",
+      "outcome": "needs_review",
+      "created_at": "2026-01-01T12:02:00Z"
+    }]
+  }
+}
