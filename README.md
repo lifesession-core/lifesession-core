@@ -222,3 +222,13 @@ delivery/review states, the next action, blockers and scoped evidence. It reject
 a completed review without acknowledged delivery. Exit code 0 means structural
 consistency only, not independent verification or permission to publish. Failed
 and unrun checks can be recorded honestly. No network or external action occurs.
+
+### Check a local session package
+
+An opt-in [v1 package check](docs/session-package.md) validates a single snapshot,
+its events and decisions, and an optional linked mission using a documented
+subset of the bundled schemas. Existing reports and handoffs are unchanged.
+
+```sh
+PYTHONPATH=src python -m lifesession check-package examples/maintainer/session_package.json
+```
