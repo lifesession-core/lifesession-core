@@ -1,10 +1,10 @@
 # LifeSession Core
 
-**An open-source operational terminal for maintainers and small teams.**
+**An early-stage, local toolkit for reviewable maintainer and AI work sessions.**
 
 LifeSession turns work into reviewable sessions — bounded units of operational attention with missions, events, decisions, and structured close records. Think of it as a lightweight structured log for anything your team or agent does.
 
-![Tests](https://img.shields.io/badge/tests-15%20passing-brightgreen)
+[![CI](https://github.com/lifesession-core/lifesession-core/actions/workflows/ci.yml/badge.svg)](https://github.com/lifesession-core/lifesession-core/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![Status](https://img.shields.io/badge/status-active-green)
@@ -21,7 +21,7 @@ LifeSession solves this with a simple operational model:
 Mission → Session → Events → Decisions → State → Review
 ```
 
-Each session is self-contained, reviewable, and safe to share. The schema layer makes sessions machine-readable. The boundary checker ensures the public package stays clean.
+Sessions make supplied records reviewable; they do not make arbitrary input safe to share. The schemas describe records, while the local exporter checks only a minimal envelope. The boundary checker flags a limited set of patterns; manual review is still required.
 
 ---
 
@@ -31,22 +31,22 @@ Each session is self-contained, reviewable, and safe to share. The schema layer 
 |-----------|-------------|
 | `schemas/` | JSON schemas — mission, event, decision, session state |
 | `examples/` | Fake end-to-end workflows: maintainer, commerce, gallery, simulation |
-| `src/lifesession/` | Demo Python package — session lifecycle, boundary checker |
-| `tests/` | 15 unit tests covering session, boundary, schemas, examples |
+| `src/lifesession/` | Demo session lifecycle, local Markdown exporter, heuristic boundary checker |
+| `tests/` | Unit tests covering sessions, reports, boundary checks, schemas and examples |
 | `docs/` | Architecture, vision, Codex workflows, public/private boundary |
-| `.github/` | Issue templates, PR templates, CI stub |
+| `.github/` | Issue templates, PR templates, Python CI |
 
 ---
 
 ## Quickstart
 
 ```bash
-git clone https://github.com/your-org/lifesession-core
+git clone https://github.com/lifesession-core/lifesession-core.git
 cd lifesession-core
 python -m unittest discover -s tests -v
 ```
 
-Expected output: `Ran 15 tests in ...s — OK`
+Expected result: the test suite finishes with `OK`. See the CI link for checks on a specific revision.
 
 No external dependencies required.
 
@@ -54,9 +54,9 @@ No external dependencies required.
 
 ## How Codex Maintains This Project
 
-LifeSession Core is actively maintained by [Codex](https://openai.com/codex) through structured work sessions.
+Maintainers can use [Codex](https://openai.com/codex) to prepare changes, with human review. This repository includes documented agent-assisted workflows; it does not run an autonomous maintenance service.
 
-Each Codex session follows the same lifecycle that LifeSession itself models:
+The intended contribution workflow follows the same lifecycle that LifeSession models:
 
 1. **Read context** — task card, previous session handoff, git log
 2. **Execute** — schema updates, test fixes, doc improvements, issue triage
@@ -64,9 +64,9 @@ Each Codex session follows the same lifecycle that LifeSession itself models:
 4. **Commit** — clean commit with task reference
 5. **Handoff** — write session report for next agent or human review
 
-This creates a self-referential loop: the tool that manages sessions is itself maintained through sessions. Every Codex contribution is traceable, reviewable, and bounded.
+This creates a self-referential loop: the tool that manages sessions is itself maintained through sessions. Contributors should attach verification and handoff evidence to each change.
 
-**Codex tasks this project:**
+**Suggested agent-assisted tasks:**
 - Schema evolution and validation
 - Test coverage expansion
 - Documentation and roadmap updates
@@ -105,7 +105,7 @@ See [docs/codex-workflows.md](docs/codex-workflows.md) for the full workflow spe
 - **Mission** — the goal and constraints for a work period
 - **Event** — observation, signal, user action, or system update
 - **Decision** — reviewable choice with rationale and outcome
-- **Session state** — current snapshot, safe to serialize and share
+- **Session state** — current snapshot; review its contents before sharing
 - **Boundary checker** — scans files for private-data patterns before any push
 
 ---
@@ -140,7 +140,7 @@ This repository is simulation-first and public-safe by design:
 - ❌ No production code, no live APIs, no secrets, no real user data
 - ❌ No exchange integrations, no private infrastructure references
 
-The `boundary_checker.py` tool enforces this automatically:
+The `boundary_checker.py` tool checks for some obvious patterns, but cannot certify the absence of secrets or private data:
 
 ```bash
 python src/lifesession/safety/boundary_checker.py .
@@ -199,3 +199,14 @@ This checks the session envelope, not full schema conformance.
 **Review before sharing:** exporting is not sanitization. The report preserves
 input data, including any sensitive values you supply. Use the fake examples for
 public demos. Python callers can use `lifesession.report.render_markdown(record)`.
+
+## Reproducible maintainer handoff demo
+
+```bash
+PYTHONPATH=src python -m lifesession report examples/maintainer/review_handoff.json
+```
+
+This fictional example distinguishes a prepared patch from an accepted or released
+change. It includes evidence, an unresolved blocker and the next review step.
+It does not contact a service, open a PR or execute the next step. See
+[the walkthrough](docs/maintainer-handoff-demo.md) for expected output and limits.
