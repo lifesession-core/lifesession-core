@@ -1,0 +1,41 @@
+{
+  "session_id": "demo-review-handoff-001",
+  "status": "closed",
+  "type": "maintainer",
+  "mission": "Prepare a documentation correction for review",
+  "summary": "A patch is prepared and local checks passed. No merge or release has occurred.",
+  "events": [
+    {
+      "type": "observation",
+      "detail": "Quickstart refers to an outdated example command."
+    },
+    {
+      "type": "verification",
+      "detail": "Fictional focused test run passed."
+    }
+  ],
+  "decisions": [
+    {
+      "title": "Keep publication separate from preparation",
+      "rationale": "Local checks are not approval to merge or release.",
+      "outcome": "Prepared for maintainer review"
+    }
+  ],
+  "handoff": {
+    "delivery_status": "not_sent",
+    "review_status": "pending",
+    "next_action": "Maintainer reviews the patch and decides whether to publish it.",
+    "blockers": [
+      "Maintainer review is pending."
+    ],
+    "evidence": [
+      {
+        "kind": "fictional_test_result",
+        "result": "passed",
+        "scope": "example command only",
+        "limitations": "Not an integration or production test."
+      }
+    ]
+  },
+  "note": "Entirely fictional example. No real users, identifiers, services or operational data."
+}
