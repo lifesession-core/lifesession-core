@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 
 from .report import render_markdown
+from .handoff import check_handoff
 
 
 def _reject_constant(value):
@@ -16,13 +17,22 @@ def main(argv=None):
     commands = parser.add_subparsers(dest="command", required=True)
     report = commands.add_parser("report", help="render a local JSON session as Markdown")
     report.add_argument("session", type=Path, help="local UTF-8 JSON file")
+    check = commands.add_parser("check-handoff", help="check a local v1 handoff contract")
+    check.add_argument("session", type=Path, help="local UTF-8 JSON file")
     args = parser.parse_args(argv)
     try:
         data = json.loads(args.session.read_text(encoding="utf-8"), parse_constant=_reject_constant)
-        output = render_markdown(data)
+        if args.command == "check-handoff":
+            errors = check_handoff(data)
+            if errors:
+                print("error: " + ", ".join(errors), file=sys.stderr)
+                return 2
+            output = "OK — handoff structure consistent; evidence not independently verified.\n"
+        else:
+            output = render_markdown(data)
     except (OSError, UnicodeError, ValueError, RecursionError):
         # Do not echo file contents, paths, or parser snippets into diagnostics.
-        print("error: cannot render session; use readable UTF-8 JSON with a non-empty session_id", file=sys.stderr)
+        print("error: cannot process session; use readable UTF-8 JSON with a non-empty session_id", file=sys.stderr)
         return 2
     sys.stdout.write(output)
     return 0
